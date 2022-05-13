@@ -19,7 +19,7 @@ public:
     }
 
     ~BinaryTreeNode() // it will take root info from "this" keyword
-    { // distrutor
+    { // destructor
         delete left;
         delete right;
     }
