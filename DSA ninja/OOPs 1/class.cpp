@@ -24,7 +24,7 @@ public:
     student(int a, int r)
     {
         cout << "Construtor 3 Called: " << endl;
-        cout << "This here represent: " << this << endl; // keyword this will print the address of the currernt object which called perticular construtor from main()
+        cout << "This here represent: " << this << endl; // keyword this will print the address of the currernt object which called particular construtor from main()
         (*this).age = a;                                 // as this keyword is a pointer variable so we need to use such syntax or use "this->age"
         this->rollNumber = r;                            // can also write like ths
     }
