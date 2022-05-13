@@ -1,0 +1,122 @@
+#include <iostream>
+
+class Node
+{
+public:
+    int data;
+    Node *next;
+    Node(int data)
+    {
+        this->data = data;
+        this->next = NULL;
+    }
+};
+
+using namespace std;
+
+// Function to segregate even and odd nodes.
+Node *evenAfterOdd(Node *head)
+{
+
+    Node *evenH = NULL;
+    Node *evenT = NULL;
+    Node *oddH = NULL;
+    Node *oddT = NULL;
+
+    Node *temp = head;
+
+    while (temp != NULL)
+    {
+        int val = temp->data;
+
+        if (val % 2 == 0)
+        {
+            if (evenH == NULL)
+            {
+                evenH = temp;
+                evenT = evenH;
+            }
+
+            else
+            {
+                evenT->next = temp;
+                evenT = evenT->next;
+            }
+        }
+
+        else
+        {
+            if (oddH == NULL)
+            {
+                oddH = temp;
+                oddT = oddH;
+            }
+            else
+            {
+                oddT->next = temp;
+                oddT = oddT->next;
+            }
+        }
+
+        temp = temp->next;
+    }
+
+    if (oddH == NULL || evenH == NULL)
+    {
+        return head;
+    }
+
+    evenT->next = NULL;
+    oddT->next = NULL;
+
+    oddT->next = evenH;
+
+    return oddH
+}
+
+Node *takeinput()
+{
+    int data;
+    cin >> data;
+    Node *head = NULL, *tail = NULL;
+    while (data != -1)
+    {
+        Node *newnode = new Node(data);
+        if (head == NULL)
+        {
+            head = newnode;
+            tail = newnode;
+        }
+        else
+        {
+            tail->next = newnode;
+            tail = newnode;
+        }
+        cin >> data;
+    }
+    return head;
+}
+
+void print(Node *head)
+{
+    Node *temp = head;
+    while (temp != NULL)
+    {
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+    cout << endl;
+}
+
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        Node *head = takeinput();
+        head = evenAfterOdd(head);
+        print(head);
+    }
+    return 0;
+}
